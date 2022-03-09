@@ -116,6 +116,38 @@ export default function Index() {
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}
+                        <StyledTableRow>
+                            <StyledTableCell component="th" scope="row" align="right">
+                                <Typography variant="h4" component="div">
+                                    نظرات
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell component="th" scope="row" align="right" colSpan="2">
+                                <TextField
+                                    fullWidth={true}
+                                    multiline={true}
+                                    colSpan="6"
+                                    id="outlined-number"
+                                    label="اینجا بنویسید"
+                                    type="number"/>
+                            </StyledTableCell>
+                        </StyledTableRow>
+                        <StyledTableRow>
+                            <StyledTableCell component="th" scope="row" align="right">
+                                <Typography variant="h4" component="div">
+                                    پیشنهادات
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell component="th" scope="row" align="right" colSpan="2">
+                                <TextField
+                                    fullWidth={true}
+                                    multiline={true}
+                                    colSpan="6"
+                                    id="outlined-number"
+                                    label="اینجا بنویسید"
+                                    type="number"/>
+                            </StyledTableCell>
+                        </StyledTableRow>
                     </TableBody>
                 </Table>
             </TableContainer>

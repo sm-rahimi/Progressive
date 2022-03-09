@@ -88,9 +88,7 @@ const DataTableValues: DataTableInterface[] = [
             {
                 idq: 1,
                 str: 'نام مکان اسیب(متن)',
-                'values': [
-                    'نام مکان اسیب(متن)-',
-                ]
+                'values': null
             },
             {
                 idq: 2,
@@ -340,45 +338,25 @@ const DataTableValues: DataTableInterface[] = [
             {
                 idq: 1,
                 str: 'بر اساس TIME LOSS',
-                values: null
+                values: [
+                    'کم: صفر روز',
+                    'ملایم: 4-7 روز',
+                    'متوسط: 8-28 روز',
+                    'شدید: بیشتر از 28 روز'
+                ]
             },
             {
                 idq: 2,
-                str: 'کم: صفر روز',
-                values: null
-            },
-            {
-                idq: 3,
-                str: 'خفیف: غیبت از تمرین یا مسابقه 1-3 روز',
-                values: null
-            },
-            {
-                idq: 4,
-                str: 'ملایم: 4-7 روز',
-                values: null
-            },
-            {
-                idq: 5,
-                str: 'متوسط: 8-28 روز',
-                values: null
-            },
-            {
-                idq: 6,
-                str: 'شدید: بیشتر از 28 روز',
-                values: null
-            },
-            {
-                idq: 7,
                 str: 'آسیب منجر به بازنشستگی فرد از ورزش',
                 values: null
             },
             {
-                idq: 8,
+                idq: 3,
                 str: 'اسیب مرگبار در تمرین یا مسابقه',
                 values: null
             },
             {
-                idq: 9,
+                idq: 4,
                 str: 'اسیب فاجعه بار',
                 values: [
                     'اسیب مغزی در اثر تروما',
@@ -387,22 +365,22 @@ const DataTableValues: DataTableInterface[] = [
                 ]
             },
             {
-                idq: 10,
+                idq: 5,
                 str: 'از طریق سنجش فاکتورهای امادگی جسمانی مثل قدرت، تعادل',
                 values: null
             },
             {
-                idq: 11,
+                idq: 6,
                 str: 'استفاده از شاخص شدت ورزش SSI))',
                 values: null
             },
             {
-                idq: 12,
+                idq: 7,
                 str: 'با استفاده از مقیاس آسیب مختصرAIS))',
                 values: null
             },
             {
-                idq: 13,
+                idq: 8,
                 str: 'بر اساس نوع اسیب',
                 values: [
                     'رگ به رگ شدن ها، کشیدگیها، کوفتگی ها و زخم ها به آسیب های خفیف',
@@ -536,12 +514,7 @@ const DataTableValues: DataTableInterface[] = [
             },
             {
                 idq: 5,
-                str: 'ICECI',
-                values: null
-            },
-            {
-                idq: 6,
-                str: 'هر سه',
+                str: 'ASIDD',
                 values: null
             },
         ]
