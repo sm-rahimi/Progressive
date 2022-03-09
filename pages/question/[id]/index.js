@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {Box, Button, Grid, TextField, Typography} from "@mui/material";
 import dataTableObj from "../../../data/DataTable.ts";
+
 import {useState} from "react";
 
 
@@ -32,13 +33,13 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
     },
 }));
 
-const createData = (modiriat, typo, key) => {
-    return {modiriat, typo, key};
+const createData = (rowValue, typo, key) => {
+    return {rowValue, typo, key};
 }
 
-const filledDataCreate = (question1, question2, id) => {
-    return {question1, question2, id};
-}
+// const filledDataCreate = (question1, question2, id) => {
+//     return {question1, question2, id};
+// }
 
 const dataDispatch = (question, pageStep) => {
     let dataDispatched = [];
@@ -57,17 +58,6 @@ const dataDispatch = (question, pageStep) => {
     return dataDispatched;
 }
 
-
-const rows = [
-
-    createData('Frozen yoghurt', 1),
-    createData('Ice cream sandwich', 2),
-    createData('Eclair', 26),
-    createData('Cupcake', 30),
-    createData('Gingerbread', 35),
-];
-
-
 export default function Index() {
     const [pageStep, setPageStep] = useState(0);
 
@@ -85,20 +75,10 @@ export default function Index() {
         }
     };
 
-    const onChangeQuestion1 = () => {
-
-    }
-
-    const onChangeQuestion2 = () => {
-
-    }
 
     // console.log(dataDispatch(dataTableObj[0].questions));
     const PAGE_DATA = dataTableObj[pageStep];
     const dataDispatch1 = dataDispatch(PAGE_DATA.questions, PAGE_DATA.id);
-    let filledData = [];
-    let question1Id = "";
-    let question2Id = "";
     return (
         <div dir="rtl">
             <TableContainer component={Paper}>
@@ -115,22 +95,21 @@ export default function Index() {
                     </TableHead>
                     <TableBody>
                         {dataDispatch1.map((row) => (
-                            <StyledTableRow key={row.modiriat}>
+                            <StyledTableRow key={row.rowValue}>
                                 <StyledTableCell component="th" scope="row" align="right">
                                     <Typography variant={row.typo} component="div">
-                                        {row.modiriat}
+                                        {row.rowValue}
                                     </Typography>
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField
-                                        onChange={}
+
                                         id="outlined-number"
                                         label="0-1"
                                         type="number"/>
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField
-                                        onChange={}
                                         id="outlined-number"
                                         label="0-5"
                                         type="number"/>
