@@ -98,7 +98,7 @@ const DataTableValues: DataTableInterface[] = [
             },
             {
                 idq: 9,
-                str: 'سطح رقابت/تمرین(نخبه، آماتور، ورزشکاان تفریحی)،',
+                str: 'سطح رقابت/تمرین(نخبه، آماتور، ورزشکاران تفریحی)،',
                 'values': null
             },
             {
@@ -159,7 +159,7 @@ const DataTableValues: DataTableInterface[] = [
             },
             {
                 idq: 3,
-                str: 'نام مکان ورزشی ',
+                str: 'نوع مکان ورزشی ',
                 'values': null
             },
             {
@@ -335,22 +335,22 @@ const DataTableValues: DataTableInterface[] = [
         questions: [
             {
                 idq: 1,
-                str: 'ICD',
+                str: 'سیسنم طبقه بندی بین المللی بیماریها (ICD)',
                 values: null
             },
             {
                 idq: 2,
-                str: 'OSICS',
+                str: 'سیستم کدگذاری اسیب ورزشی ارچارد(OSICS)',
                 values: null
             },
             {
                 idq: 3,
-                str: 'SMDCS',
+                str: 'سیستم کدگزاری تشخیص اسیب ورزشی میوایز(SMDCS)',
                 values: null
             },
             {
                 idq: 4,
-                str: 'ASIDD',
+                str: 'دیکشنری اسیب های ورزشی استرالیا(ASIDD)',
                 values: null
             },
         ]
@@ -652,7 +652,7 @@ const DataTableValues: DataTableInterface[] = [
     },
     {
         id: 22,
-        title: 'ارجاع: نشان می دهد که اگر مصدوم برای ارزیابی بیشتر ارجاع داده شود، به چه کسی و چگونه فوری به آنها توصیه می شود که به دنبال ارزیابی یا درمان بیشتر باشند. ',
+        title: 'ارجاع: نشان می دهد که اگر مصدوم برای ارزیابی بیشتر ارجاع داده شود، به چه کسی و میزان فوریتی که به آنها توصیه می شود که به دنبال ارزیابی یا درمان بیشتر باشند. ',
         questions: [
             {
                 idq: 1,
