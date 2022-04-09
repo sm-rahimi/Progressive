@@ -60,6 +60,7 @@ const dataDispatch = (question, pageStep) => {
 
 export default function Index() {
     const [pageStep, setPageStep] = useState(0);
+    const [pageData, setPageData] = useState({});
 
     const backButtonClick = () => {
         if (pageStep !== 0) {
@@ -69,11 +70,24 @@ export default function Index() {
     };
 
     const nextButtonClick = () => {
-        if (pageStep !== 37) {
+        if (pageStep !== 24) {
             let nextStep = pageStep + 1;
             setPageStep(nextStep);
+            console.log(pageData);
         }
     };
+
+    const handleChange = (e) => {
+        // if (e.target.name in pageData) {
+        let temp = pageData;
+        temp[e.target.name] = e.target.value;
+        setPageData(temp);
+        // } else {
+        //     let temp = pageData;
+        //     temp[e.target.name] = e.target.value;
+        //     setPageData(temp);
+        // }
+    }
 
 
     // console.log(dataDispatch(dataTableObj[0].questions));
@@ -103,13 +117,16 @@ export default function Index() {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField
-
+                                        name={`radYaGhabul-${row.rowValue}`}
+                                        onChange={(e) => handleChange(e)}
                                         id="outlined-number"
                                         label="0-1"
                                         type="number"/>
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField
+                                        name={`rotbe-${row.rowValue}`}
+                                        onChange={(e) => handleChange(e)}
                                         id="outlined-number"
                                         label="0-5"
                                         type="number"/>
@@ -135,7 +152,7 @@ export default function Index() {
                         <StyledTableRow>
                             <StyledTableCell component="th" scope="row" align="right">
                                 <Typography variant="h4" component="div">
-                                    پیشنهادات
+                                    عناصر داده پیشنهادی
                                 </Typography>
                             </StyledTableCell>
                             <StyledTableCell component="th" scope="row" align="right" colSpan="2">
