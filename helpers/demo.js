@@ -8,6 +8,7 @@ export const demo = {
     getById: id => users.find(x => x.id.toString() === id.toString()),
     find: x => users.find(x),
     create,
+    viewData,
     update,
     delete: _delete
 };
@@ -29,6 +30,10 @@ function create(fullName, pro, age, sex, workXP, userid) {
     // add and save index
     users.push(user);
     saveData();
+}
+
+function viewData(){
+    return users;
 }
 
 function update(id, params) {

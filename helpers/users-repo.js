@@ -8,6 +8,7 @@ export const usersRepo = {
     getById: id => users.find(x => x.id.toString() === id.toString()),
     find: x => users.find(x),
     create,
+    viewData,
     update,
     delete: _delete
 };
@@ -26,6 +27,10 @@ function create(userid,key, data) {
     // add and save index
     users.push(user);
     saveData();
+}
+
+function viewData(){
+    return users;
 }
 
 function update(id, params) {

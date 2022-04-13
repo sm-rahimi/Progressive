@@ -14,8 +14,11 @@ export default function index(req, res) {
 
     if (req.body === null) {
         return res.status(200).json({res: 'null'});
-    } else {
+    } else if (req.method === 'POST') {
         usersRepo.create(req.body.userid, req.body.key, req.body.data);
         return res.status(200).json({userid: req.body.userid, key: req.body.key, data: req.body.data});
+    } else {
+        const allData = usersRepo.viewData();
+        return res.status(200).json(allData);
     }
 }
