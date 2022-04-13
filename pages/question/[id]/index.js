@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {styled} from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -61,11 +60,42 @@ const dataDispatch = (question, pageStep) => {
 export default function Index() {
     const [pageStep, setPageStep] = useState(0);
     const [pageData, setPageData] = useState({});
+    const [nazarat, setNazarat] = useState('');
+    const [pishnehad, setPishnehad] = useState('');
+
+    const isJsonString = (str) => {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+    async function saveData(key, pData) {
+        const res = await fetch(`/api/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({userid: window.sessionStorage.getItem("userid"), key, data: pData})
+        })
+        const data = await res.json();
+
+        if (isJsonString(data)) {
+            console.log("json!!!!!!");
+            console.log(data);
+        } else {
+            console.log('successfully logged in')
+            console.log(data)
+        }
+    }
 
     const backButtonClick = () => {
         if (pageStep !== 0) {
             let backStep = pageStep - 1;
             setPageStep(backStep);
+            setPageData({});
         }
     };
 
@@ -73,15 +103,35 @@ export default function Index() {
         if (pageStep !== 24) {
             let nextStep = pageStep + 1;
             setPageStep(nextStep);
-            console.log(pageData);
+            for (const [key, value] of Object.entries(pageData)) {
+                saveData(key, value);
+                setPageData({});
+            }
+            setNazarat('');
+            setPishnehad('');
         }
-    };
+    }
+
+    const handleChangeNazarat = (e) => {
+        setNazarat(e.target.value);
+        let temp = pageData;
+        temp[e.target.name] = e.target.value;
+        setPageData(temp);
+    }
+
+    const handleChangePishnehad = (e) => {
+        setPishnehad(e.target.value);
+        let temp = pageData;
+        temp[e.target.name] = e.target.value;
+        setPageData(temp);
+    }
 
     const handleChange = (e) => {
         // if (e.target.name in pageData) {
         let temp = pageData;
         temp[e.target.name] = e.target.value;
         setPageData(temp);
+
         // } else {
         //     let temp = pageData;
         //     temp[e.target.name] = e.target.value;
@@ -143,6 +193,9 @@ export default function Index() {
                                 <TextField
                                     fullWidth={true}
                                     multiline={true}
+                                    name={`nazarat-${pageStep}`}
+                                    onChange={(e) => handleChangeNazarat(e)}
+                                    value={nazarat}
                                     colSpan="6"
                                     id="outlined-number"
                                     label="اینجا بنویسید"
@@ -159,6 +212,9 @@ export default function Index() {
                                 <TextField
                                     fullWidth={true}
                                     multiline={true}
+                                    name={`pishnehad-${pageStep}`}
+                                    value={pishnehad}
+                                    onChange={(e) => handleChangePishnehad(e)}
                                     colSpan="6"
                                     id="outlined-number"
                                     label="اینجا بنویسید"
