@@ -7,9 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {Box, Button, Grid, TextField, Typography} from "@mui/material";
-import dataTableObj from "../../../data/DataTable.ts";
+import dataTableObj from "../../data/DataTable.ts";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
@@ -57,20 +58,29 @@ const dataDispatch = (question, pageStep) => {
     return dataDispatched;
 }
 
-export default function Index() {
+export default function Id() {
+    const routeId = useRouter();
+
     const [pageStep, setPageStep] = useState(0);
     const [pageData, setPageData] = useState({});
+    const [allPageData, setAllPageData] = useState({});
+
     const [nazarat, setNazarat] = useState('');
     const [pishnehad, setPishnehad] = useState('');
 
-    const isJsonString = (str) => {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
+
+    useEffect(() => {
+        if (!isNaN(routeId.query.id)) {
+            if (parseInt(routeId.query.id) < 25) {
+                setPageStep(parseInt(routeId.query.id) - 1);
+            }
         }
-        return true;
-    }
+    }, [routeId]);
+
+    useEffect(()=>{
+
+    })
+
 
     async function saveData(key, pData) {
         const res = await fetch(`/api/users`, {
@@ -80,27 +90,20 @@ export default function Index() {
             },
             body: JSON.stringify({userid: window.sessionStorage.getItem("userid"), key, data: pData})
         })
-        const data = await res.json();
-
-        if (isJsonString(data)) {
-            console.log("json!!!!!!");
-            console.log(data);
-        } else {
-            console.log('successfully logged in')
-            console.log(data)
-        }
     }
 
     const backButtonClick = () => {
-        if (pageStep !== 0) {
+        if (pageStep > 0) {
             let backStep = pageStep - 1;
             setPageStep(backStep);
             setPageData({});
+            setNazarat('');
+            setPishnehad('');
         }
     };
 
     const nextButtonClick = () => {
-        if (pageStep !== 24) {
+        if (pageStep < 24) {
             let nextStep = pageStep + 1;
             setPageStep(nextStep);
             for (const [key, value] of Object.entries(pageData)) {
@@ -129,22 +132,35 @@ export default function Index() {
     const handleChange = (e) => {
         // if (e.target.name in pageData) {
         let temp = pageData;
+        let tempAll = allPageData;
         temp[e.target.name] = e.target.value;
+        tempAll[e.target.name] = e.target.value;
         setPageData(temp);
-
+        setAllPageData(tempAll);
         // } else {
         //     let temp = pageData;
         //     temp[e.target.name] = e.target.value;
         //     setPageData(temp);
         // }
     }
-
+    const handleAllValue = (e) => {
+        if(allPageData[e.target.name])
+        {
+            return parseInt(allPageData[e.target.name]);
+        }
+        else
+        {
+            return 0;
+        }
+        return 0;
+    }
+    console.log(allPageData)
 
     // console.log(dataDispatch(dataTableObj[0].questions));
     const PAGE_DATA = dataTableObj[pageStep];
     const dataDispatch1 = dataDispatch(PAGE_DATA.questions, PAGE_DATA.id);
     return (
-        <div dir="rtl">
+        routeId.isReady && <div dir="rtl">
             <TableContainer component={Paper}>
                 <Table aria-label="customized table">
                     <TableHead>
@@ -169,6 +185,7 @@ export default function Index() {
                                     <TextField
                                         name={`radYaGhabul-${row.rowValue}`}
                                         onChange={(e) => handleChange(e)}
+                                        defaultValue={(e)=>handleAllValue(e)}
                                         id="outlined-number"
                                         label="0-1"
                                         type="number"/>
