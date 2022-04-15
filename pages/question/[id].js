@@ -103,7 +103,7 @@ export default function Id() {
     };
 
     const nextButtonClick = () => {
-        if (pageStep < 24) {
+        if (pageStep < 23) {
             let nextStep = pageStep + 1;
             setPageStep(nextStep);
             for (const [key, value] of Object.entries(pageData)) {
@@ -112,6 +112,10 @@ export default function Id() {
             }
             setNazarat('');
             setPishnehad('');
+        }
+        else {
+            if(routeId.isReady)
+                routeId.push('/finished');
         }
     }
 
@@ -143,16 +147,15 @@ export default function Id() {
         //     setPageData(temp);
         // }
     }
-    const handleAllValue = (e) => {
-        if(allPageData[e.target.name])
+    const handleAllValue = (name) => {
+        if(allPageData[name])
         {
-            return parseInt(allPageData[e.target.name]);
+            return parseInt(allPageData[name]);
         }
         else
         {
-            return 0;
+            return '';
         }
-        return 0;
     }
     console.log(allPageData)
 
@@ -185,7 +188,7 @@ export default function Id() {
                                     <TextField
                                         name={`radYaGhabul-${row.rowValue}`}
                                         onChange={(e) => handleChange(e)}
-                                        defaultValue={(e)=>handleAllValue(e)}
+                                        defaultValue={handleAllValue(`radYaGhabul-${row.rowValue}`)}
                                         id="outlined-number"
                                         label="0-1"
                                         type="number"/>
@@ -194,6 +197,7 @@ export default function Id() {
                                     <TextField
                                         name={`rotbe-${row.rowValue}`}
                                         onChange={(e) => handleChange(e)}
+                                        defaultValue={handleAllValue(`rotbe-${row.rowValue}`)}
                                         id="outlined-number"
                                         label="0-5"
                                         type="number"/>
